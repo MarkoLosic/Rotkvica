@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/* Dizajn sistem — boje i fontovi dostupni kao Tailwind klase (bg-bg, text-peach, font-serif...) */
+@theme {
+  --color-bg: #0f0f0f;
+  --color-surface: #151515;
+  --color-cream: #f5f0e6;
+  --color-peach: #dca789;
+  --color-peach-dark: #c98f6e;
+  --color-ink: #1a1410;
+  --color-muted: #a0a0a0;
+  --color-line: #2a2a2a;
+}
+
+@theme inline {
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Sekcije ne smiju završiti ispod sticky navigacije */
+section[id] {
+  scroll-margin-top: 72px;
+}
+
+::selection {
+  background: var(--color-peach);
+  color: var(--color-ink);
+}
+
+@layer components {
+  .label {
+    @apply font-sans text-[11px] font-medium uppercase tracking-[0.28em] text-peach;
+  }
+  .heading {
+    @apply font-serif text-4xl leading-[1.05] tracking-tight text-cream sm:text-5xl lg:text-6xl;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-peach;
+  }
+  .btn-peach {
+    @apply bg-peach text-ink hover:bg-peach-dark;
+  }
+  .btn-light {
+    @apply bg-cream text-ink hover:bg-white;
+  }
+  .btn-outline {
+    @apply border border-cream/70 text-cream hover:bg-cream hover:text-ink;
+  }
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
